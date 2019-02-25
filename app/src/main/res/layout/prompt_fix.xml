@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_root"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:padding="10dp"
+    android:background="@color/colorPrimary"
+    android:baselineAligned="false">
+
+    <TextView
+        android:id="@+id/tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/vvedite_znachenie2"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:inputType="date|numberDecimal"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:layout_gravity="center_horizontal"
+        android:textColor="#ffffff" />
+
+    <TextView
+        android:id="@+id/tv2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Перепелка съст корма:"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:inputType="date|numberDecimal"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:layout_gravity="center_horizontal"
+        android:textColor="#ffffff" />
+    <TextView
+        android:id="@+id/tv3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="При 42 днях - 489.3г"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:inputType="date|numberDecimal"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:layout_gravity="center_horizontal"
+        android:textColor="#ffffff" />
+    <TextView
+        android:id="@+id/tv4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="При 49 днях - 602.7г"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:inputType="date|numberDecimal"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:layout_gravity="center_horizontal"
+        android:textColor="#ffffff" />
+    <TextView
+        android:id="@+id/tv5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="При 56 днях - 718.9г"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:inputType="date|numberDecimal"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:layout_gravity="center_horizontal"
+        android:textColor="#ffffff" />
+    <TextView
+        android:id="@+id/tv6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="При 63 днях - 835.1г"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:inputType="date|numberDecimal"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:layout_gravity="center_horizontal"
+        android:textColor="#ffffff" />
+
+
+
+</LinearLayout>
