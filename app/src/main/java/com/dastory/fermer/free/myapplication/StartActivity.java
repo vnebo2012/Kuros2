@@ -6,7 +6,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.net.ConnectivityManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.annotation.NonNull;
@@ -15,14 +17,29 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class StartActivity extends AppCompatActivity {
 
     private TextView mTextMessage;
     final Context context2 = this;
     final String MY_SETTINGS = "saved_text_stg100011";
+
+    InterstitialAd mInterstitialAd;
+    ImageButton mNewGameButton;
+    private static int SPLASH_TIME_OUT = 5000;
+    static Context context4;
+    Timer t = new Timer();
+    static Intent intent;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -69,6 +86,39 @@ public class StartActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
+
+        mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd.setAdUnitId("ca-app-pub-4882550262749386/4377610438");
+        mInterstitialAd.setAdListener(new AdListener() {
+            @Override
+            public void onAdClosed() {
+                t.cancel();
+            }
+        });
+        requestNewInterstitial();
+        t.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        t.cancel();
+                        ConnectivityManager icheck = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+                        boolean mob = icheck.getActiveNetworkInfo() != null;
+                        if(mob) {
+                            if (mInterstitialAd.isLoaded()) {
+                                mInterstitialAd.show();
+                            } else {
+                                beginPlayingGame();
+                            }
+                        } else {
+                        }
+                    }
+                });
+            }
+        }, SPLASH_TIME_OUT, SPLASH_TIME_OUT);
+
+
 
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
@@ -150,5 +200,18 @@ public class StartActivity extends AppCompatActivity {
         Intent a = new Intent(this,Perepelka_mjaso_Activity.class);
         a.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(a);
+    }
+
+    private void requestNewInterstitial() {
+
+        AdRequest adRequest = new AdRequest.Builder()
+
+                .addTestDevice("SEE_YOUR_LOGCAT_TO_GET_YOUR_DEVICE_ID")
+
+                .build();
+        mInterstitialAd.loadAd(adRequest);
+    }
+    private void beginPlayingGame() {
+        // Play for a while, then display the New Game Button
     }
 }
